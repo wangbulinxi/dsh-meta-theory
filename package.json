@@ -1,0 +1,44 @@
+{
+  "name": "dsh-meta-theory",
+  "version": "0.1.0",
+  "description": "把随口一句需求翻译成该领域的成熟方法论再开工：开工前定主理论与辅助理论并给出组合链路，写完后按 8 条翻车模式逐项校验，防止只堆理论名词而不改变做法。附带理论前置技能与 AGENTS.md 规则注入。",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "meta-theory",
+    "theory-tree",
+    "skill",
+    "reasoning"
+  ],
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./rules": "./lib/rules.mjs",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "assets",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "check": "node --check lib/index.js && node --check lib/rules.mjs",
+    "test": "node test/unit.mjs && node test/smoke.mjs",
+    "prepublishOnly": "npm run check && npm test && npm pack --dry-run",
+    "pack": "npm pack"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT"
+}
